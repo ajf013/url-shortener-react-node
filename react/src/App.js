@@ -11,9 +11,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import logo from './images/logo192.png';
-import twitter from './images/twitter.svg';
-import heart from './images/heart-emoji.png';
-import backgroundImage from './images/background.jpg';
+import backgroundImage from './images/bg.jpg';
 import Container from "@material-ui/core/Container";
 import InputBase from '@material-ui/core/InputBase';
 import FormControl from "@material-ui/core/FormControl";
@@ -32,7 +30,7 @@ import 'semantic-ui-css/semantic.min.css';
 const BootstrapInput = withStyles(theme => ({
   root: {
     'label + &': {
-      marginTop: theme.spacing(3),
+      marginTop: theme.spacing(5),
     },
   },
   input: {
@@ -49,7 +47,6 @@ const BootstrapInput = withStyles(theme => ({
       '-apple-system',
       'BlinkMacSystemFont',
       '"Segoe UI"',
-      'Roboto',
       '"Helvetica Neue"',
       'Arial',
       'sans-serif',
@@ -99,7 +96,7 @@ const useStyles = makeStyles(() => ({
     borderRadius: 4,
     color: '#605c5c',
   },
-  top5: {
+  top10: {
     margin: '40px',
     color: '#605c5c'
   },
@@ -116,22 +113,6 @@ const useStyles = makeStyles(() => ({
   },
   flex: {
     flexGrow: 1
-  },
-  footer: {
-    bottom: 0,
-    position: 'fixed',
-    width: '100%',
-    backgroundColor: '#fafafa'
-  },
-  footerImg: {
-    width: '18px',
-  },
-  footerP: {
-    display: 'inline',
-    verticalAlign: 'super',
-    padding: '5px',
-    fontSize: 'larger',
-    color: '#605c5c',
   },
   disabled: {
     color: 'white !important',
@@ -160,20 +141,20 @@ export default function App() {
 
 
   useEffect(() => {
-    const getInitialTop5 = async () => {
-      console.log('getInitialTop5');
+    const getInitialTop10 = async () => {
+      console.log('getInitialTop10');
 
       try {
         const response = await axios.get('/api/shrink');
-        const top5 = response.data.top5;
-        console.log(top5);
-        setTop5(top5);
+        const top5 = response.data.top10;
+        console.log(top10);
+        setTop10(top10);
       } catch (error) {
         console.log(error);
       }
     };
 
-    getInitialTop5().catch(console.log);
+    getInitialTop10().catch(console.log);
   }, []);
 
 
@@ -195,7 +176,7 @@ export default function App() {
           setOpenSnackbar(true);
           console.log('result.data', result.data);
           setShortUrl(result.data.shortened.short);
-          setTop5(result.data.top5);
+          setTop10(result.data.top10);
         } else {
           error(result.data)
         }
@@ -224,11 +205,11 @@ export default function App() {
       <div className={classes.backgroundImage}>
         <AppBar position="static" className={classes.backgroundImage} elevation={0}>
           <Toolbar>
-            <Avatar alt="Remy Sharp" src={logo} style={{ marginTop: '27px', width: 60,
-              height: 60 }} />
+            <Avatar alt="logo" src={logo} style={{ marginTop: '27px', width: 60,
+              height: 40 }} />
           </Toolbar>
 
-          <Typography style={{margin: 'auto'}} variant="h4">
+          <Typography style={{margin: 'auto' }} variant="h4">
             Shrink your link!
           </Typography>
 
@@ -288,22 +269,7 @@ export default function App() {
         </List>
       </Container>
 
-      {/* <div className={classes.footer}>
-        <Toolbar variant="dense">
-          <Typography
-            variant="caption"
-            color="inherit"
-            className={classes.flex}>
-            <p className={classes.footerP}>Made with</p>
-            <img src={heart} alt='' className={classes.footerImg} />
-            <p className={classes.footerP}>by Interlink</p>
-          </Typography>
-          <Link href='https://twitter.com/Itsme_Ajf013' target="_blank" rel="noreferrer noopenner">
-            <img src={twitter} alt='' className={classes.footerImg} />
-          </Link>
-        </Toolbar>
-      </div> */}
-
+      
       <AlertDialog open={openAlert} handleClose={handleCloseAlert} error={errorMessage}/>
 
       <Snackbar
