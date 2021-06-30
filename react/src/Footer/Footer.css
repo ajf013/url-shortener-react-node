@@ -1,5 +1,6 @@
 .footer_content{
     text-align: center;
+    color: rgb(105, 34, 163);
 }
 .footer_main{
     padding: 50px;
@@ -17,7 +18,7 @@
     transition: 0.5s;
 }
 .footer_Icons .footer_link a{
-    color: rgba(160, 126, 64, 0.586);
+    color: rgba(21, 52, 136, 0.904);
     transform: scale(1);
     transition: 0.5s;
 }
@@ -41,7 +42,7 @@
     transform: scale(1.2);
 }
 .footer_Icons .footer_link a:hover{
-    color: orange;
+    color: rgb(70, 55, 206);
     transform: scale(1.2);
 }
 .footer_Icons .footer_insta a:hover{
